@@ -2,6 +2,8 @@
 
 ## Run local
 
+### Setup
+
 - set jdk 17
 
 ```shell
@@ -19,33 +21,63 @@ OpenJDK 64-Bit Server VM Corretto-17.0.0.35.2 (build 17+35-LTS, mixed mode, shar
 docker-compose up -d
 ```
 
-- build
+### Run
+
+- build(create executable jar)
 
 ```shell
-
+./gradlew build
 ```
 
 - run application as a spring-boot
 
 ```shell
-
+./gradlew bootRun
 ```
 
-- run application as a jar using ~~maven~~
+- run application as a jar
 
 ```shell
-#ARTIFACT_VERSION=$(./mvnw org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout)
-# TODO: gradle
+ARTIFACT_NAME=$(./gradlew properties -q | grep "name:" | awk '{print $2}')
+ARTIFACT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
+java -jar build/libs/$ARTIFACT_NAME-$ARTIFACT_VERSION.jar
 ```
 
-### Access [localhost:8081](http://localhost:8081/)
+### Access
+
+- you can use [postman collection](./postman)
+
+```shell
+$ curl --location --request GET 'http://localhost:8081/employees'
+[{"id":1,"name":"taro","department":"sales"},{"id":2,"name":"jiro","department":"human resources"}]
+
+$ curl --location --request GET 'http://localhost:8081/employees/1'
+{"id":1,"name":"taro","department":"sales"}
+```
 
 ---
-## Build Docker image
+### Build Docker image
 
 - spring
 
 ```shell
-# TODO: gradle
-#./mvnw spring-boot:build-image
+./gradlew bootBuildImage
+
+ $ docker image ls | grep employee
+kiyotakeshi/employee                            0.0.1                                                   78336b9cd40f   41 years ago    296MB
+```
+
+### Run as container
+
+- comment-out [docker-compose "employee" section](./docker-compose.yaml)
+
+```shell
+export ARTIFACT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
+
+$ docker compose up -d
+
+$ docker compose ps   
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+employee            "/cnb/process/web"       employee            running             0.0.0.0:8081->8081/tcp
+employee-postgres   "docker-entrypoint.s…"   postgres            running             0.0.0.0:5432->5432/tcp
 ```

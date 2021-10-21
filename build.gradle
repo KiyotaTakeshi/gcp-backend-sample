@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.kiyotakeshi'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '17'
 
 repositories {
@@ -24,4 +24,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+bootBuildImage {
+	imageName = "docker.io/kiyotakeshi/" + project.name + ":" + version
 }

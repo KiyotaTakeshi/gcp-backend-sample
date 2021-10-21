@@ -13,3 +13,13 @@ services:
       POSTGRES_DB: employee
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
     restart: always
+# run as container
+#  employee:
+#    image: kiyotakeshi/employee:${ARTIFACT_VERSION}
+#    container_name: employee
+#    ports:
+#      - 8081:8081
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://employee-postgres:5432/employee
+#    depends_on:
+#      - postgres
