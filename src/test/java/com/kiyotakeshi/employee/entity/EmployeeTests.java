@@ -1,5 +1,6 @@
 package com.kiyotakeshi.employee.entity;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,6 +15,7 @@ public class EmployeeTests {
     TestEntityManager em;
 
     @Test
+    @DisplayName("Test find employee from initialized data in data.sql")
     void find() {
         var employee = em.find(Employee.class, 1);
         var employee2 = em.find(Employee.class, 2);
@@ -22,6 +24,7 @@ public class EmployeeTests {
     }
 
     @Test
+    @DisplayName("Test save(insert) new employee data")
     void save() {
         var newEmployee = new Employee("ichiro", "account");
         em.persistAndFlush(newEmployee);
@@ -31,6 +34,7 @@ public class EmployeeTests {
     }
 
     @Test
+    @DisplayName("Test update employee data")
     void update() {
         var employee = em.find(Employee.class, 1);
         employee.setDepartment("president");

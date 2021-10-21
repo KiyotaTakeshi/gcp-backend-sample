@@ -3,8 +3,6 @@ package com.kiyotakeshi.employee.service;
 import com.kiyotakeshi.employee.entity.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -16,7 +14,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findById() {
+    public Employee findById(int id) {
         return null;
     }
 }
