@@ -23,6 +23,9 @@ public class EmployeesControllerTest {
         mockMvc.perform(get("/employees"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name", is("taro")));
+                .andExpect(jsonPath("$[0].name", is("taro")))
+                .andExpect(content().json("""
+                        [{"id":0,"name":"taro","department":"president"},{"id":0,"name":"jiro","department":"sales"}]
+                        """));
     }
 }
