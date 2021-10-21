@@ -5,6 +5,6 @@ import com.kiyotakeshi.employee.entity.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    List<Employee> findAll();
-    Employee findById(int id);
+    List<Employee> findEmployees();
+    Employee findEmployeeById(int id);
 }

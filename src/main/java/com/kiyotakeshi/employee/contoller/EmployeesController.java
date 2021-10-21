@@ -22,13 +22,13 @@ public class EmployeesController {
 
     @GetMapping
     public ResponseEntity<?> getEmployees() {
-        List<Employee> employeeList = employeeService.findAll();
+        List<Employee> employeeList = employeeService.findEmployees();
         return ResponseEntity.ok().body(employeeList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getEmployee(@PathVariable Integer id) {
-        Employee employee = employeeService.findById(id);
+        Employee employee = employeeService.findEmployeeById(id);
         return ResponseEntity.ok().body(employee);
     }
 }

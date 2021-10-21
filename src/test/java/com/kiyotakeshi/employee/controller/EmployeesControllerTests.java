@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest
 @AutoConfigureMockMvc
-public class EmployeesControllerTest {
+public class EmployeesControllerTests {
 
     @MockBean
     private EmployeeService employeeService;
@@ -40,7 +40,7 @@ public class EmployeesControllerTest {
                 new Employee(2, "jiro", "sales")
         ));
 
-        doReturn(employees).when(employeeService).findAll();
+        doReturn(employees).when(employeeService).findEmployees();
         mockMvc.perform(get(BASE_PATH))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -54,7 +54,7 @@ public class EmployeesControllerTest {
     @DisplayName("Test employee found")
     void getEmployee() throws Exception {
         var employee = new Employee(1, "taro", "president");
-        doReturn(employee).when(employeeService).findById(employee.getId());
+        doReturn(employee).when(employeeService).findEmployeeById(employee.getId());
 
         mockMvc.perform(get(BASE_PATH + "/{id}", employee.getId()))
                 .andExpect(status().isOk())
