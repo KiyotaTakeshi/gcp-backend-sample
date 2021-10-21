@@ -12,10 +12,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return new ArrayList(Arrays.asList(
-                new Employee("taro", "president"),
-                new Employee("jiro", "sales")
-        ));
+        return null;
     }
 
     @Override
