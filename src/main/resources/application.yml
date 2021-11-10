@@ -8,6 +8,15 @@ spring:
     driverClassName: org.postgresql.Driver
     username: postgres
     password: password
+management:
+#  endpoints:
+#    web:
+#      exposure:
+#        # @see https://spring.pleiades.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.exposing
+#        include: metrics,health,flyway,env,beans,configprops
+  endpoint:
+    health:
+      show-details: always
 #  flyway:
 #    enabled: true
 #    baseline-on-migrate: true
