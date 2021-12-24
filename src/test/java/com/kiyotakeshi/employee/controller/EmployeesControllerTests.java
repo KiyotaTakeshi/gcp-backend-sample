@@ -45,9 +45,7 @@ public class EmployeesControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].name", is("taro")))
-                .andExpect(content().json("""
-                        [{"id":1,"name":"taro","department":"president"},{"id":2,"name":"jiro","department":"sales"}]
-                        """));
+                .andExpect(content().json("[{\"id\":1,\"name\":\"taro\",\"department\":\"president\"},{\"id\":2,\"name\":\"jiro\",\"department\":\"sales\"}]"));
     }
 
     @Test
@@ -59,8 +57,6 @@ public class EmployeesControllerTests {
         mockMvc.perform(get(BASE_PATH + "/{id}", employee.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json("""
-                        {"id":1,"name":"taro","department":"president"}
-                        """));
+                .andExpect(content().json("{\"id\":1,\"name\":\"taro\",\"department\":\"president\"}"));
     }
 }

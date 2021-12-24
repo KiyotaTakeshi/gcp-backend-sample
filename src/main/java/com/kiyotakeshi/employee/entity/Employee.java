@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 public class Employee {
@@ -47,6 +48,28 @@ public class Employee {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && name.equals(employee.name) && department.equals(employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, department);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                '}';
     }
 }
 
