@@ -1,5 +1,7 @@
 package com.kiyotakeshi.employee.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.GenerationType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +17,11 @@ public class Employee {
     private int id;
 
     @NotNull
+    @JsonProperty("Name")
     private String name;
 
     @NotNull
+    @JsonProperty("Department")
     private String department;
 
     public Employee(String name, String department) {
