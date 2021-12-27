@@ -4,15 +4,15 @@
 
 ### Setup
 
-- set jdk 17
+- set jdk 11
 
 ```shell
-$ export JAVA_HOME=`/usr/libexec/java_home -v 17`
+$ export JAVA_HOME=`/usr/libexec/java_home -v 11`
 
-$ java -version                                     
-openjdk version "17" 2021-09-14 LTS
-OpenJDK Runtime Environment Corretto-17.0.0.35.2 (build 17+35-LTS)
-OpenJDK 64-Bit Server VM Corretto-17.0.0.35.2 (build 17+35-LTS, mixed mode, sharing)
+$ java -version                                                                                  
+openjdk version "11.0.11" 2021-04-20 LTS
+OpenJDK Runtime Environment Corretto-11.0.11.9.1 (build 11.0.11+9-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.11.9.1 (build 11.0.11+9-LTS, mixed mode)
 ```
 
 - run postgres
